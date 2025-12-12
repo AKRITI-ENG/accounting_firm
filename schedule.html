@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Consultation – Finovate Accounting</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui;
+            background: #ffffff;
+            color: #1e293b;
+        }
+
+        nav {
+            padding: 1rem;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1500px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+        }
+
+        .nav-link {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .nav-link a:hover {
+            color: #1e3a8a;
+        }
+
+        .consult-hero {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            color: white;
+        }
+
+        .consult-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+
+        .consult-hero p {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .consult-container {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .consult-container h2 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .btn-primary {
+            background: #1e3a8a;
+            color: white;
+            padding: 0.9rem 1.5rem;
+            border-radius: 8px;
+            display: block;
+            width: 100%;
+            margin-top: 2rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: #1e40af;
+        }
+    </style>
+
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img class="logo-icon" src="assests/FInovate logo.png"/>
+                <span>Finovate Accounting</span>
+            </a>
+            <ul class="nav-link">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#benefits">Benefits</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="index.html#membership">Membership</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="consult-hero">
+        <h1>Schedule Your Consultation</h1>
+        <p>Let our experts help you plan your financial success.</p>
+    </section>
+
+    <div class="consult-container">
+        <h2>Book an Appointment</h2>
+
+        <form>
+            <label>Full Name</label>
+            <input type="text" required>
+
+            <label>Email Address</label>
+            <input type="email" required>
+
+            <label>Phone Number</label>
+            <input type="text" required>
+
+            <label>Select Service Type</label>
+            <select required>
+                <option value="" disabled selected>Choose your consultation type</option>
+                <option>Tax Planning Consultation</option>
+                <option>Audit Services Consultation</option>
+                <option>Bookkeeping Consultation</option>
+                <option>Business Strategy Session</option>
+                <option>General Financial Advice</option>
+            </select>
+
+            <label>Select Date</label>
+            <input type="date" required>
+
+            <label>Select Time</label>
+            <input type="time" required>
+
+            <label>Your Message (optional)</label>
+            <textarea rows="4" placeholder="Mention any specific details or questions..."></textarea>
+
+            <button class="btn-primary">Schedule Consultation</button>
+        </form>
+    </div>
+
+</body>
+</html>
