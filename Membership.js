@@ -1,13 +1,49 @@
-// Add this to the existing Membership.js
+var buttons = document.querySelectorAll(".select-plan");
+
+var paymentForm = document.getElementById("paymentForm");
+var planNameDisplay = document.getElementById("selectedPlanName");
+var summaryAmount = document.getElementById("summaryAmount");
+var summaryTax = document.getElementById("summaryTax");
+var summaryTotal = document.getElementById("summaryTotal");
+var termsAmount = document.getElementById("termsAmount");
+var btnTotalAmount = document.getElementById("btnTotalAmount");
+
+var hiddenPlan = document.getElementById("selectedPlan");
+var hiddenPrice = document.getElementById("selectedPrice");
+
+buttons.forEach(function(btn) {
+    btn.addEventListener("click", function() {
+        var card = btn.parentElement;
+
+        var planName = card.getAttribute("data-plan");
+        var price = parseFloat(card.getAttribute("data-price"));
+
+        planNameDisplay.innerText = planName;
+        summaryAmount.innerText = "₹" + price;
+
+        var tax = (price * 0.18).toFixed(2);
+        var total = (price + parseFloat(tax)).toFixed(2);
+
+        summaryTax.innerText = "₹" + tax;
+        summaryTotal.innerText = "₹" + total;
+        termsAmount.innerText = price;
+        btnTotalAmount.innerText = total;
+
+        hiddenPlan.value = planName;
+        hiddenPrice.value = price;
+
+        paymentForm.style.display = "block";
+        paymentForm.scrollIntoView({ behavior: "smooth" });
+    });
+});
 
 var paymentForm = document.getElementById("payment");
 var successMsg = document.getElementById("successMsg");
 
-// Form validation and submission
 paymentForm.addEventListener("submit", function(event) {
     event.preventDefault();
     
-    // Basic validation
+    
     var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
     var card = document.getElementById("card").value;
@@ -26,25 +62,21 @@ paymentForm.addEventListener("submit", function(event) {
         return;
     }
     
-    // Card number validation (basic)
     var cleanCard = card.replace(/\s/g, '');
     if (cleanCard.length !== 16 || isNaN(cleanCard)) {
         showMessage("Please enter a valid 16-digit card number.", "error");
         return;
     }
     
-    // CVV validation
     if (cvv.length !== 3 || isNaN(cvv)) {
         showMessage("Please enter a valid 3-digit CVV.", "error");
         return;
     }
     
-    // Show success message
     showMessage("✅ Payment successful! Thank you for subscribing to " + 
                 document.getElementById("selectedPlanName").innerText + 
                 ". A confirmation email has been sent.", "success");
     
-    // Reset form after 3 seconds
     setTimeout(function() {
         paymentForm.reset();
         successMsg.style.display = "none";
@@ -64,7 +96,7 @@ function showMessage(text, type) {
     }
 }
 
-// Format card number with spaces
+
 document.getElementById("card").addEventListener("input", function(e) {
     var value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
     var matches = value.match(/\d{4,16}/g);
