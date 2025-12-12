@@ -153,6 +153,16 @@
             background-size: cover;
             
         }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: 0;
+        }
         
         .hero-container {
             display: grid;
@@ -161,6 +171,8 @@
             align-items: center;
             gap: 4rem;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
         .hero-badge {
@@ -235,13 +247,9 @@
             justify-content: center;
             background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(245, 158, 11, 0.1));
             border-radius: 20px;
+            overflow: hidden;
         }
         
-        .hero-image::before {
-            content: '💼';
-            font-size: 150px;
-            opacity: 0.3;
-        }
      
         .section-header {
             text-align: center;
@@ -405,6 +413,7 @@
             opacity: 0;
             transform: translateY(50px);
             transition: all 0.6s ease;
+            overflow: hidden;
         }
         
         .benefits-image.show {
@@ -413,7 +422,7 @@
         }
         
         .benefits-image::before {
-            content: '📊';
+            /* content: '📊'; */
             font-size: 150px;
             opacity: 0.3;
         }
@@ -816,7 +825,9 @@
                     </div>
                 </div>
             </div>
-            <div class="hero-image"></div>
+            <div class="hero-image">
+                
+            </div>
         </div>
     </section>
     <section id="features">
@@ -891,7 +902,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="benefits-image"></div>
+                <div class="benefits-image">
+                    <video class="hero-video" autoplay loop muted playsinline >
+                    <source src="assests/Minimal_Video_Generation_Request copy.mp4" type="video/mp4">
+                </video>
+                </div>
             </div>
         </div>
     </section>
