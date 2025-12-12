@@ -1,0 +1,394 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f8fafc;
+    color: #1e293b;
+}
+
+.navbar {
+    background: white;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    color: #1e3a8a;
+    margin: 0;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #1e3a8a;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.back-btn:hover {
+    background: #f1f5f9;
+}
+
+.plans-section {
+    text-align: center;
+    padding: 2rem;
+}
+
+.plans-container {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.plan-card {
+    width: 280px;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.plan-card:hover {
+    transform: translateY(-6px);
+}
+
+.price {
+    font-size: 1.4rem;
+    margin: 0.7rem 0;
+    color: #1e3a8a;
+    font-weight: bold;
+}
+
+.plan-card ul {
+    text-align: left;
+    margin: 1rem 0;
+    padding-left: 1rem;
+}
+
+.plan-card li {
+    margin: 0.4rem 0;
+}
+
+.select-plan {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.7rem;
+    background: #1e3a8a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.select-plan:hover {
+    background: #1e40af;
+}
+
+.popular {
+    border: 2px solid #f59e0b;
+    position: relative;
+}
+
+.popular .tag {
+    background: #f59e0b;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Payment Section Styles */
+.payment-section {
+    display: none;
+    margin: 3rem auto;
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.payment-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.payment-header h2 {
+    color: #1e3a8a;
+    margin: 0 0 0.5rem 0;
+}
+
+.payment-subtitle {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.selected-plan-info {
+    background: #f1f5f9;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plan-info-left h3 {
+    margin: 0 0 0.3rem 0;
+    color: #1e293b;
+}
+
+.plan-period {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.plan-amount {
+    margin: 0;
+    color: #1e3a8a;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.plan-amount span {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: normal;
+}
+
+.form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.form-section h3 {
+    color: #1e293b;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.card-input-container {
+    position: relative;
+}
+
+.card-icons {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 5px;
+}
+
+.card-icon {
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.card-icon.visa {
+    background: #1a1f71;
+    color: white;
+}
+
+.card-icon.mastercard {
+    background: #eb001b;
+    color: white;
+}
+
+.card-icon.amex {
+    background: #2e77bc;
+    color: white;
+}
+
+.cvv-container {
+    position: relative;
+}
+
+.cvv-info {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #cbd5e1;
+    color: #475569;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    cursor: help;
+}
+
+.payment-summary {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.payment-summary h3 {
+    margin: 0 0 1rem 0;
+    color: #1e293b;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    color: #475569;
+}
+
+.summary-row.total {
+    border-top: 1px solid #cbd5e1;
+    padding-top: 0.8rem;
+    margin-top: 0.8rem;
+    font-weight: bold;
+    color: #1e293b;
+    font-size: 1.1rem;
+}
+
+.terms-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #fefce8;
+    border-radius: 6px;
+    border: 1px solid #fde047;
+}
+
+.terms-section input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.terms-section label {
+    color: #475569;
+    font-size: 0.9rem;
+}
+
+.terms-section a {
+    color: #1e3a8a;
+    text-decoration: none;
+}
+
+.terms-section a:hover {
+    text-decoration: underline;
+}
+
+.payment-security {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0.8rem;
+    background: #f0f9ff;
+    border-radius: 6px;
+    color: #0369a1;
+    font-size: 0.9rem;
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.pay-btn:hover {
+    background: #0da271;
+}
+
+.btn-text {
+    flex: 1;
+    text-align: left;
+}
+
+.btn-amount {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.success-message {
+    text-align: center;
+    margin-top: 1.2rem;
+    color: #10b981;
+    font-weight: bold;
+    padding: 1rem;
+    background: #d1fae5;
+    border-radius: 6px;
+    display: none;
+}
+
+.error-message {
+    color: #dc2626;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    background: #fee2e2;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
