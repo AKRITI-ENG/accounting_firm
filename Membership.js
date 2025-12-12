@@ -1,115 +1,248 @@
-var buttons = document.querySelectorAll(".select-plan");
-
-var paymentForm = document.getElementById("paymentForm");
-var planNameDisplay = document.getElementById("selectedPlanName");
-var summaryAmount = document.getElementById("summaryAmount");
-var summaryTax = document.getElementById("summaryTax");
-var summaryTotal = document.getElementById("summaryTotal");
-var termsAmount = document.getElementById("termsAmount");
-var btnTotalAmount = document.getElementById("btnTotalAmount");
-
-var hiddenPlan = document.getElementById("selectedPlan");
-var hiddenPrice = document.getElementById("selectedPrice");
-
-buttons.forEach(function(btn) {
-    btn.addEventListener("click", function() {
-        var card = btn.parentElement;
-
-        var planName = card.getAttribute("data-plan");
-        var price = parseFloat(card.getAttribute("data-price"));
-
-        planNameDisplay.innerText = planName;
-        summaryAmount.innerText = "₹" + price;
-
-        var tax = (price * 0.18).toFixed(2);
-        var total = (price + parseFloat(tax)).toFixed(2);
-
-        summaryTax.innerText = "₹" + tax;
-        summaryTotal.innerText = "₹" + total;
-        termsAmount.innerText = price;
-        btnTotalAmount.innerText = total;
-
-        hiddenPlan.value = planName;
-        hiddenPrice.value = price;
-
-        paymentForm.style.display = "block";
-        paymentForm.scrollIntoView({ behavior: "smooth" });
+document.addEventListener('DOMContentLoaded', function() {
+    const planButtons = document.querySelectorAll('.select-plan');
+    const paymentSection = document.getElementById('paymentForm');
+    const selectedPlanInput = document.getElementById('selectedPlan');
+    const selectedPriceInput = document.getElementById('selectedPrice');
+    const summaryPlan = document.getElementById('summaryPlan');
+    const summaryPrice = document.getElementById('summaryPrice');
+    const payAmount = document.getElementById('payAmount');
+    const successMsg = document.getElementById('successMsg');
+    const payButton = document.querySelector('.pay-btn');
+    const paymentForm = document.getElementById('payment');
+    const cardInput = document.getElementById('card');
+    const cvvInput = document.getElementById('cvv');
+    const expInput = document.getElementById('exp');
+    
+    initExpiryDate();
+    
+    planButtons.forEach(button => {
+        button.addEventListener('click', handlePlanSelection);
     });
-});
-
-var paymentForm = document.getElementById("payment");
-var successMsg = document.getElementById("successMsg");
-
-paymentForm.addEventListener("submit", function(event) {
-    event.preventDefault();
     
+    paymentForm.addEventListener('submit', handlePaymentSubmit);
     
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var card = document.getElementById("card").value;
-    var exp = document.getElementById("exp").value;
-    var cvv = document.getElementById("cvv").value;
-    var terms = document.getElementById("terms").checked;
+    cardInput.addEventListener('input', formatCardNumber);
     
-    // Simple validation
-    if (!name || !email || !card || !exp || !cvv) {
-        showMessage("Please fill in all required fields.", "error");
-        return;
+    cvvInput.addEventListener('input', formatCVV);
+    
+    cardInput.addEventListener('keyup', detectCardType);
+    
+    function initExpiryDate() {
+        const currentYear = new Date().getFullYear();
+        const currentMonth = String(new Date().getMonth() + 1).padStart(2, '0');
+        expInput.min = `${currentYear}-${currentMonth}`;
+        
+        const nextYear = currentYear + 1;
+        expInput.value = `${nextYear}-${currentMonth}`;
     }
     
-    if (!terms) {
-        showMessage("You must agree to the terms and conditions.", "error");
-        return;
+    function handlePlanSelection() {
+        const planCard = this.closest('.plan-card');
+        const planName = planCard.getAttribute('data-plan');
+        const planPrice = planCard.getAttribute('data-price');
+        
+        // Update payment form with selected plan
+        selectedPlanInput.value = planName;
+        selectedPriceInput.value = planPrice;
+        summaryPlan.textContent = planName;
+        summaryPrice.textContent = `₹${planPrice} / month`;
+        payAmount.textContent = `₹${planPrice}`;
+        payButton.innerHTML = `Pay Now - <span id="payAmount">₹${planPrice}</span>`;
+        
+        paymentSection.style.display = 'block';
+        
+        setTimeout(() => {
+            paymentSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 100);
+        
+        const newPayAmount = document.getElementById('payAmount');
+        newPayAmount.textContent = `₹${planPrice}`;
     }
     
-    var cleanCard = card.replace(/\s/g, '');
-    if (cleanCard.length !== 16 || isNaN(cleanCard)) {
-        showMessage("Please enter a valid 16-digit card number.", "error");
-        return;
+    function handlePaymentSubmit(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const card = document.getElementById('card').value;
+        const exp = document.getElementById('exp').value;
+        const cvv = document.getElementById('cvv').value;
+        const plan = selectedPlanInput.value;
+        const price = selectedPriceInput.value;
+        
+        if (!validateForm(name, email, card, cvv)) {
+            return;
+        }
+        
+        payButton.textContent = 'Processing...';
+        payButton.classList.add('processing');
+        
+        simulatePaymentProcessing(name, email, card, exp, cvv, plan, price);
     }
     
-    if (cvv.length !== 3 || isNaN(cvv)) {
-        showMessage("Please enter a valid 3-digit CVV.", "error");
-        return;
+    function validateForm(name, email, card, cvv) {
+        const cleanCard = card.replace(/\s/g, '');
+        
+        if (cleanCard.length !== 16 || !/^\d+$/.test(cleanCard)) {
+            showError('Please enter a valid 16-digit card number');
+            return false;
+        }
+        
+        if (cvv.length !== 3 || !/^\d+$/.test(cvv)) {
+            showError('Please enter a valid 3-digit CVV');
+            return false;
+        }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showError('Please enter a valid email address');
+            return false;
+        }
+        
+        // Name validation
+        if (name.trim().length < 2) {
+            showError('Please enter your full name');
+            return false;
+        }
+        
+        return true;
     }
     
-    showMessage("✅ Payment successful! Thank you for subscribing to " + 
-                document.getElementById("selectedPlanName").innerText + 
-                ". A confirmation email has been sent.", "success");
+    function showError(message) {
+        const existingError = document.querySelector('.error-message');
+        if (existingError) {
+            existingError.remove();
+        }
+        
+        const errorElement = document.createElement('div');
+        errorElement.className = 'error-message';
+        errorElement.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+        errorElement.style.cssText = `
+            color: #dc2626;
+            background-color: #fee2e2;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+        `;
+        
+        payButton.parentNode.insertBefore(errorElement, payButton);
+        
+        setTimeout(() => {
+            if (errorElement.parentNode) {
+                errorElement.remove();
+            }
+        }, 5000);
+    }
     
-    setTimeout(function() {
+    function simulatePaymentProcessing(name, email, card, exp, cvv, plan, price) {
+        // Simulate API call delay
+        setTimeout(() => {
+            // Show success message
+            successMsg.style.display = 'block';
+            payButton.style.display = 'none';
+            
+            successMsg.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+            
+            console.log('Payment processed successfully:');
+            console.log(`Plan: ${plan}, Amount: ₹${price}`);
+            console.log(`Name: ${name}, Email: ${email}`);
+            console.log(`Card: **** **** **** ${card.replace(/\s/g, '').slice(-4)}`);
+            console.log(`Expiry: ${exp}`);
+            
+            simulateConfirmationEmail(email, plan, price);
+            
+            setTimeout(() => {
+                resetPaymentForm(price);
+                
+                showConfirmationAlert(plan);
+            }, 5000);
+        }, 2000);
+    }
+    
+    function simulateConfirmationEmail(email, plan, price) {
+        console.log(`Sending confirmation email to: ${email}`);
+        console.log(`Subject: Welcome to Finovate Accounting - ${plan} Activated!`);
+        console.log(`Body: Thank you for subscribing to our ${plan} at ₹${price}/month.`);
+    }
+    
+    function resetPaymentForm(price) {
         paymentForm.reset();
-        successMsg.style.display = "none";
-    }, 5000);
-});
-
-function showMessage(text, type) {
-    successMsg.textContent = text;
-    successMsg.style.display = "block";
-    
-    if (type === "error") {
-        successMsg.style.color = "#dc2626";
-        successMsg.style.background = "#fee2e2";
-    } else {
-        successMsg.style.color = "#10b981";
-        successMsg.style.background = "#d1fae5";
-    }
-}
-
-
-document.getElementById("card").addEventListener("input", function(e) {
-    var value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-    var matches = value.match(/\d{4,16}/g);
-    var match = matches && matches[0] || '';
-    var parts = [];
-    
-    for (var i = 0, len = match.length; i < len; i += 4) {
-        parts.push(match.substring(i, i + 4));
+        initExpiryDate(); // Reset expiry date
+        paymentSection.style.display = 'none';
+        successMsg.style.display = 'none';
+        payButton.style.display = 'block';
+        payButton.classList.remove('processing');
+        payButton.innerHTML = `Pay Now - <span id="payAmount">₹${price}</span>`;
+        
+        const errorElement = document.querySelector('.error-message');
+        if (errorElement) {
+            errorElement.remove();
+        }
     }
     
-    if (parts.length) {
-        e.target.value = parts.join(' ');
-    } else {
-        e.target.value = value;
+    function showConfirmationAlert(plan) {
+        alert(`Thank you for subscribing to the ${plan}!\n\nYour account is now active. Check your email for confirmation details.\n\nYou can now access all premium features.`);
     }
+    
+    function formatCardNumber() {
+        let value = this.value.replace(/\D/g, '');
+        if (value.length > 16) value = value.substring(0, 16);
+        
+        let formatted = '';
+        for (let i = 0; i < value.length; i++) {
+            if (i > 0 && i % 4 === 0) formatted += ' ';
+            formatted += value[i];
+        }
+        
+        this.value = formatted;
+    }
+    
+    function formatCVV() {
+        this.value = this.value.replace(/\D/g, '').substring(0, 3);
+    }
+    
+    function detectCardType() {
+        const cardNumber = this.value.replace(/\s/g, '');
+        const cardIcons = document.querySelectorAll('.payment-icons i');
+        
+        cardIcons.forEach(icon => {
+            icon.style.opacity = '0.3';
+            icon.style.transform = 'scale(1)';
+        });
+        
+        let detectedType = null;
+        
+        if (/^4/.test(cardNumber)) {
+            // Visa
+            detectedType = 'visa';
+        } else if (/^5[1-5]/.test(cardNumber)) {
+            // Mastercard
+            detectedType = 'mastercard';
+        } else if (/^3[47]/.test(cardNumber)) {
+            // American Express
+            detectedType = 'amex';
+        } else if (/^6(?:011|5)/.test(cardNumber)) {
+            // Discover
+            detectedType = 'discover';
+        }
+        
+        if (detectedType) {
+            const detectedIcon = document.querySelector(`.fa-cc-${detectedType}`);
+            if (detectedIcon) {
+                detectedIcon.style.opacity = '1';
+                detectedIcon.style.transform = 'scale(1.2)';
+                detectedIcon.style.transition = 'all 0.3s ease';
+            }
+        }
+    }
+    
+    detectCardType.call(cardInput);
 });
