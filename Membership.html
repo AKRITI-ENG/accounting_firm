@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membership Plans – Finovate Accounting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="Membership.css">
 </head>
 <body>
 
     <nav class="navbar">
-        <h2 class="logo">Finovate Accounting</h2>
-        <a href="index.html" class="back-btn">← Back to Home</a>
+        <h2 class="logo"><i class="fas fa-calculator"></i> Finovate Accounting</h2>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
     </nav>
 
     <section class="plans-section">
         <h1>Choose Your Membership Plan</h1>
-        <p>Select a plan that fits your needs and proceed to payment.</p>
+        <p>Select a plan that fits your needs and proceed to payment. All plans include a 30-day money-back guarantee.</p>
 
         <div class="plans-container">
             <div class="plan-card" data-plan="Basic Plan" data-price="49">
                 <h2>Basic</h2>
-                <p class="price">₹49 / month</p>
+                <p class="price">₹49 <span>/ month</span></p>
                 <ul>
-                    <li>Monthly bookkeeping</li>
-                    <li>Email support</li>
-                    <li>Basic tax advice</li>
+                    <li>Monthly bookkeeping & reconciliation</li>
+                    <li>Email support (48-hour response)</li>
+                    <li>Basic tax advice and filing</li>
+                    <li>Quarterly financial summary</li>
+                    <li>Access to basic financial templates</li>
                 </ul>
                 <button class="select-plan">Choose Plan</button>
             </div>
@@ -32,22 +35,26 @@
             <div class="plan-card popular" data-plan="Premium Plan" data-price="99">
                 <div class="tag">Most Popular</div>
                 <h2>Premium</h2>
-                <p class="price">₹99 / month</p>
+                <p class="price">₹99 <span>/ month</span></p>
                 <ul>
-                    <li>Complete bookkeeping</li>
-                    <li>Priority support</li>
-                    <li>Tax planning sessions</li>
+                    <li>Complete bookkeeping & financial statements</li>
+                    <li>Priority support (24-hour response)</li>
+                    <li>Monthly tax planning sessions</li>
+                    <li>Monthly financial analysis report</li>
+                    <li>Customized financial dashboards</li>
                 </ul>
                 <button class="select-plan">Choose Plan</button>
             </div>
 
             <div class="plan-card" data-plan="Elite Plan" data-price="199">
                 <h2>Elite</h2>
-                <p class="price">₹199 / month</p>
+                <p class="price">₹199 <span>/ month</span></p>
                 <ul>
-                    <li>Dedicated accountant</li>
-                    <li>Full audit support</li>
-                    <li>Financial strategy meetings</li>
+                    <li>Dedicated certified accountant</li>
+                    <li>Full audit support and representation</li>
+                    <li>Weekly financial strategy meetings</li>
+                    <li>Advanced tax optimization strategies</li>
+                    <li>Custom financial forecasting models</li>
                 </ul>
                 <button class="select-plan">Choose Plan</button>
             </div>
@@ -55,143 +62,56 @@
     </section>
 
     <section class="payment-section" id="paymentForm">
-        <div class="payment-header">
-            <h2>Enter Payment Details</h2>
-            <p class="payment-subtitle">Secure payment · SSL encrypted · No data stored</p>
-        </div>
+        <h2><i class="fas fa-credit-card"></i> Enter Payment Details</h2>
         
-        <div class="selected-plan-info">
-            <div class="plan-info-left">
-                <h3 id="selectedPlanName">Premium Plan</h3>
-                <p class="plan-period">Monthly subscription · Auto-renewal</p>
-            </div>
-            <div class="plan-info-right">
-                <p class="plan-amount">₹99<span>/month</span></p>
-            </div>
+        <div class="plan-summary">
+            <h3 id="summaryPlan">Premium Plan</h3>
+            <div class="price" id="summaryPrice">₹99 / month</div>
         </div>
 
         <form id="payment">
-            <div class="form-section">
-                <h3>Personal Information</h3>
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" placeholder="Enter your full name" >
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="Enter your email address" >
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number (Optional)</label>
-                    <input type="tel" id="phone" placeholder="Enter phone number">
-                </div>
-            </div>
+            <label for="name">Name on Card</label>
+            <input type="text" id="name" placeholder="John Doe" required>
 
-            <div class="form-section">
-                <h3>Card Details</h3>
-                <div class="form-group">
-                    <label for="card">Card Number</label>
-                    <div class="card-input-container">
-                        <input type="text" id="card" maxlength="19" placeholder="1234 5678 9012 3456" >
-                        <div class="card-icons">
-                            <span class="card-icon visa">VISA</span>
-                            <span class="card-icon mastercard">MC</span>
-                            <span class="card-icon amex">AMEX</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="exp">Expiry Date</label>
-                        <input type="month" id="exp" >
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="cvv">CVV</label>
-                        <div class="cvv-container">
-                            <input type="password" maxlength="3" id="cvv" placeholder="123" >
-                            <span class="cvv-info" title="3-digit code on back of card">?</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="cardName">Name on Card</label>
-                    <input type="text" id="cardName" placeholder="As shown on card" >
-                </div>
-            </div>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="john@example.com" required>
 
-            <div class="form-section">
-                <h3>Billing Address</h3>
-                <div class="form-group">
-                    <label for="address">Street Address</label>
-                    <input type="text" id="address" placeholder="Enter street address">
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" id="city" placeholder="City">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="zip">ZIP Code</label>
-                        <input type="text" id="zip" placeholder="ZIP Code">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="country">Country</label>
-                    <select id="country" >
-                        <option value="">Select Country</option>
-                        <option value="IN">India</option>
-                        <option value="US">United States</option>
-                        <option value="UK">United Kingdom</option>
-                        <option value="CA">Canada</option>
-                        <option value="AU">Australia</option>
-                    </select>
-                </div>
-            </div>
+            <label for="card">Card Number</label>
+            <input type="text" id="card" maxlength="19" placeholder="1234 5678 9012 3456" required>
 
-            <div class="payment-summary">
-                <h3>Payment Summary</h3>
-                <div class="summary-row">
-                    <span>Plan Amount</span>
-                    <span id="summaryAmount">₹99</span>
+            <div class="row">
+                <div>
+                    <label for="exp">Expiry Date</label>
+                    <input type="month" id="exp" required>
                 </div>
-                <div class="summary-row">
-                    <span>Tax (18% GST)</span>
-                    <span id="summaryTax">₹17.82</span>
-                </div>
-                <div class="summary-row total">
-                    <span>Total Amount</span>
-                    <span id="summaryTotal">₹116.82</span>
-                </div>
-            </div>
 
-            <div class="terms-section">
-                <input type="checkbox" id="terms" >
-                <label for="terms">
-                    I agree to the <a href="#">Terms of Service</a> and authorize Finovate Accounting to charge my card ₹<span id="termsAmount">99</span> monthly until cancelled.
-                </label>
-            </div>
-
-            <div class="payment-security">
-                <p>🔒 Your payment is secure and encrypted</p>
+                <div>
+                    <label for="cvv">CVV</label>
+                    <input type="password" maxlength="3" id="cvv" placeholder="123" required>
+                </div>
             </div>
 
             <input type="hidden" id="selectedPlan" value="Premium Plan">
             <input type="hidden" id="selectedPrice" value="99">
 
-            <button type="submit" class="pay-btn">
-                <span class="btn-text">Complete Payment</span>
-                <span class="btn-amount">₹<span id="btnTotalAmount">116.82</span></span>
-            </button>
+            <div class="payment-icons">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-amex"></i>
+                <i class="fab fa-cc-discover"></i>
+            </div>
+
+            <button type="submit" class="pay-btn">Pay Now - <span id="payAmount">₹99</span></button>
         </form>
 
-        <p class="success-message" id="successMsg"></p>
+        <p class="success-message" id="successMsg">
+            <i class="fas fa-check-circle"></i> Payment Successful! Your membership is now active. A confirmation email has been sent.
+        </p>
     </section>
+
+    <div class="footer">
+        <p>© 2023 Finovate Accounting. All rights reserved. | Secure payment processing powered by Razorpay</p>
+    </div>
 
     <script src="Membership.js"></script>
 </body>
