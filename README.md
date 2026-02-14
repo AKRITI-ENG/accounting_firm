@@ -1,62 +1,82 @@
-# accounting_firm_project
-# Finovate Accounting – Web Application  
-A modern, responsive accounting service website built as part of the SNW Group Project.  
-This project demonstrates clean UI design, modular HTML structure, animations, membership payment workflow, and good frontend development practices.
+# Finovate Accounting – Web Application
+
+A modern, responsive accounting services website built as a collaborative group project. Features clean UI design, interactive components, and realistic client testimonials.
 
 ---
 
-## 🚀 Project Overview  
-Finovate Accounting is a fictional accounting firm website designed to present services, benefits, reviews, membership plans, and a payment flow.  
-The website includes multiple pages with smooth transitions, interactive UI components, and responsive layouts.
-
----
----
-
-## 🛠 Tech Stack  
-**Frontend:**  
-- HTML5  
-- CSS3  
-- Vanilla JavaScript  
-- Responsive Grid + Flexbox  
-- CSS animations & transitions  
-
-**Tools Used:**  
-- VS Code  
-- Git & GitHub  
-- Live Server Extension  
+## 🌐 Live Demo
+**[View Project](your-deployed-url-here)**
 
 ---
 
-## ⭐ Key Features  
-### 1. Professional Landing Page  
-- Hero banner  
-- Company stats  
-- Smooth scroll animations  
-- Interactive service cards  
+## 📖 About
 
-### 2. Membership System  
-- 3 pricing plans  
-- Dynamic payment summary  
-- Fake payment simulation with transaction ID  
-- Auto-scroll into payment section  
-
-### 3. Multi-Page Design  
-- Home page  
-- Services page  
-- Membership page  
-- Contact page (recent addition)  
-
-### 4. Responsive Design  
-All pages adapt to mobile, tablet, and desktop.
-
-### 5. Smooth Animations  
-- Cards fade-in on scroll  
-- Buttons hover transitions  
-- Membership panel slide-up animation  
+Finovate Accounting is a website for a fictional accounting firm that provides services to small and medium businesses. The site includes service listings, client testimonials, membership plans, and a payment workflow.
 
 ---
 
-## 📌 How to Run the Project Locally
-1. Clone the repository:
+## 🛠 Tech Stack
+
+- HTML5
+- CSS3
+- JavaScript
+- Responsive Design (Grid & Flexbox)
+- CSS Animations
+
+**Tools:**
+- VS Code
+- Git & GitHub
+
+---
+
+## ✨ Features
+
+- **Landing Page** - Hero section with company stats and service cards
+- **Testimonials** - Real-looking reviews from Indian business owners with verified badges
+- **Membership Plans** - Three pricing tiers with payment simulation
+- **Multi-Page Design** - Home, services, membership, and contact pages
+- **Responsive** - Works on mobile, tablet, and desktop
+- **Animations** - Scroll-triggered fade-ins and smooth transitions
+
+---
+
+## 🚀 Run Locally
 ```bash
-git clone https://github.com/<your-username>/<repo-name>.git
+# Clone the repository
+git clone https://github.com/AKRITI-ENG/accounting_firm_project.git
+
+# Navigate to folder
+cd accounting_firm_project
+
+# Open index.html in your browser
+```
+
+---
+
+## 📂 Project Structure
+```
+accounting_firm_project/
+├── index.html          # Landing page
+├── main.html           # Home page
+├── Membership.html     # Membership plans
+├── contact.html        # Contact form
+├── schedule.html       # Schedule consultation
+├── start.html          # Get started page
+├── assests/            # Images and videos
+├── Membership.css      # Membership styling
+└── Membership.js       # Payment logic
+```
+
+---
+
+## 💡 What I Learned
+
+- Building responsive layouts with CSS Grid and Flexbox
+- Creating realistic UI components (testimonials with verified badges)
+- Working with Git in a collaborative environment
+- Implementing smooth CSS animations
+- Structuring multi-page websites
+
+---
+
+**Built as part of a group project for SNW**
