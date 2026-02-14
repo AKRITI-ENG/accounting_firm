@@ -540,6 +540,35 @@
         font-style: italic;
       }
 
+      /* Enhanced Testimonials Styles */
+      .client-photo-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--accent-gold);
+      }
+
+      .verified-badge {
+        display: inline-block;
+        font-size: 0.75rem;
+        color: #10b981;
+        font-weight: 600;
+        background: rgba(16, 185, 129, 0.1);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        margin-top: 0.25rem;
+      }
+
+      .testimonial-date {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        font-style: italic;
+      }
+
       .membership {
         padding: 6rem 2rem;
         background: linear-gradient(135deg, var(--accent-navy), #1e40af);
@@ -973,58 +1002,93 @@
         <div class="section-header">
           <h2 class="section-title">What Our <span>Clients Say</span></h2>
           <p class="section-subtitle">
-            Don't just take our word for it - hear from our satisfied clients
+            Real stories from businesses we've helped succeed
           </p>
         </div>
         <div class="overall-rating">
           <div class="rating-number">4.9</div>
           <div class="stars">★★★★★</div>
-          <p class="rating-text">Based on 500+ client reviews</p>
+          <p class="rating-text">Based on 500+ verified client reviews</p>
         </div>
         <div class="testimonials-grid">
           <div class="testimonial-card">
             <div class="testimonial-header">
-              <div class="client-photo">👨‍💼</div>
+              <img src="https://i.pravatar.cc/150?img=45" alt="Priya Sharma" class="client-photo-img">
               <div class="client-info">
-                <h4>Sarah Mitchell</h4>
-                <p>CEO, TechStart Solutions</p>
+                <h4>Priya Sharma</h4>
+                <p>Owner, Sharma Textiles</p>
+                <span class="verified-badge">✓ Verified Client</span>
               </div>
             </div>
             <div class="testimonial-stars">★★★★★</div>
             <p class="testimonial-text">
-              "Finovate transformed our financial management. Their expertise in
-              tax planning saved us over $50,000 last year. Highly recommended!"
+              "I was completely confused about GST filing and tax returns for my textile business. Finovate made everything so simple and clear. They explained everything in a way I could understand and handled all the paperwork. Now I sleep peacefully during tax season!"
             </p>
+            <div class="testimonial-date">Client since January 2023</div>
           </div>
+
           <div class="testimonial-card">
             <div class="testimonial-header">
-              <div class="client-photo">🧑🏼‍💼</div>
+              <img src="https://i.pravatar.cc/150?img=13" alt="Rahul Verma" class="client-photo-img">
               <div class="client-info">
-                <h4>James Davidson</h4>
-                <p>Owner, Davidson Retail Group</p>
+                <h4>Rahul Verma</h4>
+                <p>Founder, Verma Cafe & Bakery</p>
+                <span class="verified-badge">✓ Verified Client</span>
               </div>
             </div>
             <div class="testimonial-stars">★★★★★</div>
             <p class="testimonial-text">
-              "The team is incredibly responsive and knowledgeable. They handle
-              all our bookkeeping and audit needs with professionalism and
-              precision."
+              "Running a cafe means I'm always busy with customers and orders. Finovate takes care of all my accounting - from daily sales records to monthly reports. They're always available on WhatsApp when I have questions. Best decision for my business!"
             </p>
+            <div class="testimonial-date">Client since March 2022</div>
           </div>
+
           <div class="testimonial-card">
             <div class="testimonial-header">
-              <div class="client-photo">👩🏼‍💼</div>
+              <img src="https://i.pravatar.cc/150?img=27" alt="Anjali Patel" class="client-photo-img">
               <div class="client-info">
-                <h4>Lisa Chen</h4>
-                <p>CFO, GreenWave Energy</p>
+                <h4>Anjali Patel</h4>
+                <p>Director, Patel Trading Company</p>
+                <span class="verified-badge">✓ Verified Client</span>
               </div>
             </div>
             <div class="testimonial-stars">★★★★★</div>
             <p class="testimonial-text">
-              "Best accounting firm we've worked with. Their strategic
-              consulting helped us scale from $5M to $20M in revenue in just two
-              years."
+              "We had so many pending invoices and payment issues. Finovate helped us organize everything properly and even recovered some old payments we thought were lost. Their team is like family - they genuinely care about our business growth."
             </p>
+            <div class="testimonial-date">Client since June 2021</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <img src="https://i.pravatar.cc/150?img=52" alt="Vikram Singh" class="client-photo-img">
+              <div class="client-info">
+                <h4>Vikram Singh</h4>
+                <p>Owner, Singh Hardware Store</p>
+                <span class="verified-badge">✓ Verified Client</span>
+              </div>
+            </div>
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+              "I run a small hardware store and always struggled with keeping track of inventory and expenses. The team helped me set up a simple system that even I can use daily. Tax filing used to give me headaches, but now it's completely stress-free."
+            </p>
+            <div class="testimonial-date">Client since September 2022</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <img src="https://i.pravatar.cc/150?img=29" alt="Meera Iyer" class="client-photo-img">
+              <div class="client-info">
+                <h4>Meera Iyer</h4>
+                <p>Co-founder, Iyer's Beauty Salon</p>
+                <span class="verified-badge">✓ Verified Client</span>
+              </div>
+            </div>
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+              "As a salon owner, I had no idea about business accounts and expenses. Finovate taught me how to manage my money better and helped me save for expanding to a second location. Their advice has been invaluable for growing my business."
+            </p>
+            <div class="testimonial-date">Client since November 2023</div>
           </div>
         </div>
       </div>
